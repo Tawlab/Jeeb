@@ -1,0 +1,180 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Arial', sans-serif;
+}
+
+body {
+  background: #1a1a1a;
+  color: #fffaf0;
+  overflow: hidden;
+  height: 100vh;
+}
+
+/* Hero Section */
+.hero {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #2b1d2b, #1a1a1a);
+  position: relative;
+  overflow: hidden;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(216, 112, 147, 0.15), transparent);
+  top: -50%;
+  left: -50%;
+  animation: pulse 8s infinite ease-in-out;
+}
+
+.hero-content {
+  text-align: center;
+  z-index: 10;
+  margin-bottom: 2rem;
+}
+
+.hero h2 {
+  font-size: 3rem;
+  color: #f0e68c;
+  letter-spacing: 3px;
+  text-shadow: 0 0 15px rgba(240, 230, 140, 0.5);
+  animation: fadeInDown 1s ease;
+}
+
+.hero p {
+  font-size: 1.3rem;
+  max-width: 600px;
+  margin: 1rem auto;
+  font-style: italic;
+}
+
+/* Button Group (สำหรับหน้า index.html) */
+.button-group {
+  display: flex;
+  gap: 1.5rem;
+  justify-content: center;
+  margin-top: 2rem;
+}
+
+.cta-button {
+  display: inline-block;
+  padding: 0.8rem 2rem;
+  background: #d87093;
+  color: #fffaf0;
+  text-decoration: none;
+  border-radius: 25px;
+  font-size: 1.1rem;
+  box-shadow: 0 0 10px rgba(216, 112, 147, 0.7);
+  transition: all 0.3s ease;
+}
+
+.cta-button:hover {
+  background: #c71585;
+  transform: scale(1.05);
+  box-shadow: 0 0 20px rgba(216, 112, 147, 1);
+}
+
+.cta-button.yes {
+  background: #f0e68c;
+  color: #2b1d2b;
+  box-shadow: 0 0 10px rgba(240, 230, 140, 0.7);
+}
+
+.cta-button.yes:hover {
+  background: #e6d771;
+  box-shadow: 0 0 20px rgba(240, 230, 140, 1);
+}
+
+.cta-button.no {
+  background: #2b1d2b;
+  border: 1px solid #d87093;
+}
+
+/* Heart Animation */
+.heart-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 5;
+  pointer-events: none; /* ป้องกันการคลิกหัวใจ */
+}
+
+.heart {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background: #ff69b4; /* ชมพูหวานสำหรับหัวใจ */
+  transform: rotate(-45deg);
+  animation: heartFloat 4s ease-out forwards;
+}
+
+.heart::before, .heart::after {
+  content: '';
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background: #ff69b4;
+  border-radius: 50%;
+}
+
+.heart::before {
+  top: -10px;
+  left: 0;
+}
+
+.heart::after {
+  left: 10px;
+  top: 0;
+}
+
+/* สร้างหัวใจหลายตัวแบบสุ่ม */
+@keyframes createHearts {
+  0%, 100% { transform: scale(0); }
+  50% { transform: scale(1); }
+}
+
+@keyframes heartFloat {
+  0% {
+      opacity: 0;
+      transform: translateY(100vh) rotate(-45deg) scale(0);
+  }
+  20% {
+      opacity: 1;
+  }
+  100% {
+      opacity: 0.5;
+      transform: translateY(-100vh) rotate(45deg) scale(1.5);
+  }
+}
+
+/* Animations */
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.15); }
+  100% { transform: scale(1); }
+}
+
+@keyframes fadeInDown {
+  from { opacity: 0; transform: translateY(-30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .hero h2 { font-size: 2rem; }
+  .hero p { font-size: 1rem; }
+  .hero-content { margin-bottom: 1rem; }
+  .heart { width: 15px; height: 15px; }
+  .heart::before, .heart::after { width: 15px; height: 15px; }
+}
+
